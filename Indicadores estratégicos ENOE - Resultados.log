@@ -1,0 +1,667 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/alexisaagh/Library/Mobile Documents/com~apple~CloudDocs/Social Service/Proyects/Bimestre 3/EXTRA - Capacitación/Stata.lo
+> g
+  log type:  text
+ opened on:   8 Feb 2022, 13:12:51
+
+. *** LLAMAR LA BASE DE DATOS ***
+
+. use "/Users/alexisaagh/Downloads/enoe_n_2021_trim3_dta-2/enoen_sdemt321.dta"
+no; dataset in memory has changed since last saved
+r(4);
+
+.  *** LIMPIAR LA BASE DE DATOS ***
+
+. keep if r_def==0
+(0 observations deleted)
+
+. keep if c_res!=2
+(0 observations deleted)
+
+. *** PEA ***
+
+. tab clase1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+   población en PEA y |         Sexo
+                 PNEA |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Población económicame | 2,598,114  2,126,013 | 4,724,127 
+Población no económic | 1,019,790  2,048,075 | 3,067,865 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** PORCENTAJES EN DIRECCIÓN COLUMNA ***
+
+. tab clase1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98, col
+(frequency weights assumed)
+
++-------------------+
+| Key               |
+|-------------------|
+|     frequency     |
+| column percentage |
++-------------------+
+
+  Clasificación de la |
+   población en PEA y |         Sexo
+                 PNEA |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Población económicame | 2,598,114  2,126,013 | 4,724,127 
+                      |     71.81      50.93 |     60.63 
+----------------------+----------------------+----------
+Población no económic | 1,019,790  2,048,075 | 3,067,865 
+                      |     28.19      49.07 |     39.37 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+                      |    100.00     100.00 |    100.00 
+
+. *** PORCENTAJES EN DIRECCIÓN RENGLÓN ***
+
+. tab clase1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98, row
+(frequency weights assumed)
+
++----------------+
+| Key            |
+|----------------|
+|   frequency    |
+| row percentage |
++----------------+
+
+  Clasificación de la |
+   población en PEA y |         Sexo
+                 PNEA |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Población económicame | 2,598,114  2,126,013 | 4,724,127 
+                      |     55.00      45.00 |    100.00 
+----------------------+----------------------+----------
+Población no económic | 1,019,790  2,048,075 | 3,067,865 
+                      |     33.24      66.76 |    100.00 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+                      |     46.43      53.57 |    100.00 
+
+. *** Ocupación ***
+
+. *** OCUPACIÓN ***
+
+. tab clase2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+ población en ocupada |
+        y desocupada; |         Sexo
+      disponible y no |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+    Población ocupada | 2,423,314  1,970,545 | 4,393,859 
+ Población desocupada |   174,800    155,468 |   330,268 
+          Disponibles |   276,673    404,285 |   680,958 
+       No disponibles |   743,117  1,643,790 | 2,386,907 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** POSICIÓN EN LA OCUPACIÓN ***
+
+. tab pos_ocu sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+   por posición en la |         Sexo
+            ocupación |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+Trabajadores subordin | 1,677,013  1,462,069 | 3,139,082 
+          Empleadores |   122,132     53,062 |   175,194 
+Trabajadores por cuen |   591,953    400,810 |   992,763 
+Trabajadores sin pago |    32,216     54,604 |    86,820 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** SECTORES ***
+
+. tab rama_est1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación |
+          de la |
+      población |
+  ocupada según |
+      sector de |
+actividad-Total |         Sexo
+             es |    Hombre      Mujer |     Total
+----------------+----------------------+----------
+      No aplica | 1,194,590  2,203,543 | 3,398,133 
+       Primario |    15,447      3,411 |    18,858 
+     Secundario |   479,642    213,464 |   693,106 
+      Terciario | 1,912,648  1,739,431 | 3,652,079 
+No especificado |    15,577     14,239 |    29,816 
+----------------+----------------------+----------
+          Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** SECTORES (DESGLOZADO) ***
+
+. tab rama_est2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+      población según |
+            sector de |         Sexo
+ actividad-Subtotales |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,210,167  2,217,782 | 3,427,949 
+Agricultura, ganaderí |    15,447      3,411 |    18,858 
+Industria extractiva  |     7,079      7,625 |    14,704 
+Industria manufacture |   284,860    181,842 |   466,702 
+         Construcción |   187,703     23,997 |   211,700 
+             Comercio |   522,041    446,891 |   968,932 
+Restaurantes y servic |   143,420    205,897 |   349,317 
+Transportes, comunica |   287,533     50,512 |   338,045 
+Servicios profesional |   387,141    303,746 |   690,887 
+   Servicios sociales |   181,535    315,193 |   496,728 
+   Servicios diversos |   216,469    257,285 |   473,754 
+Gobierno y organismos |   174,509    159,907 |   334,416 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** NIVEL DE INGRESOS ***
+
+. tab ing7c sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |         Sexo
+ por nivel de ingreso |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+Hasta un salario míni |   637,850    600,295 | 1,238,145 
+Más de 1 hasta 2 sala |   761,226    627,493 | 1,388,719 
+Más de 2 hasta 3 sala |   277,977    203,584 |   481,561 
+Más de 3 hasta 5 sala |   207,330    128,535 |   335,865 
+Más de 5 salarios mín |   101,802     59,415 |   161,217 
+   No recibe ingresos |    32,216     55,550 |    87,766 
+      No especificado |   404,913    295,673 |   700,586 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** DURACIÓN DE LA JORNADA DE TRABAJO ***
+
+. tab dur9c sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+   por la duración de |         Sexo
+           la jornada |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+Ausentes temporales c |    73,257     73,625 |   146,882 
+    Menos de 15 horas |   132,795    185,866 |   318,661 
+     De 15 a 24 horas |   163,749    219,605 |   383,354 
+     De 25 a 34 horas |   171,804    191,337 |   363,141 
+     De 35 a 39 horas |   110,524    128,289 |   238,813 
+     De 40 a 48 horas |   876,176    750,603 | 1,626,779 
+     De 49 a 56 horas |   353,401    211,003 |   564,404 
+      Más de 56 horas |   532,145    203,340 |   735,485 
+      No especificado |     9,463      6,877 |    16,340 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** ACCESO A LA SALUD ***
+
+. tab seg_soc sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación |
+          de la |
+      población |
+    ocupada por |
+   condición de |
+       acceso a |
+  instituciones |         Sexo
+             de |    Hombre      Mujer |     Total
+----------------+----------------------+----------
+      No aplica | 1,194,590  2,203,543 | 3,398,133 
+     Con acceso | 1,031,521    941,787 | 1,973,308 
+     Sin acceso | 1,379,522  1,027,369 | 2,406,891 
+No especificado |    12,271      1,389 |    13,660 
+----------------+----------------------+----------
+          Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** AMBITO DE LA UNIDAD ECONÓMICA ***
+
+. tab ambito1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+   según el tamaño de |
+            la unidad |         Sexo
+        económica-Tot |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+  Ámbito agropecuario |    15,447      3,411 |    18,858 
+Ámbito no agropecuari | 2,311,224  1,890,954 | 4,202,178 
+      No especificado |    96,643     76,180 |   172,823 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** TAMAÑO DE LA UNIDAD ECONÓMICA ***
+
+. tab ambito2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+    por  tamaño de la |
+               unidad |         Sexo
+    económica-Subtota |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,306,680  2,283,134 | 3,589,814 
+  Sin establecimiento |   687,840    416,951 | 1,104,791 
+  Con establecimiento |   463,883    319,550 |   783,433 
+Pequeños establecimie |   455,518    426,836 |   882,354 
+Medianos establecimie |   265,103    224,971 |   490,074 
+Grandes establecimien |   222,950    169,229 |   392,179 
+             Gobierno |   174,509    159,907 |   334,416 
+                Otros |    41,421    173,510 |   214,931 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** DISTRIBUCIÓN POR TIPO DE UNIDAD ECONÓMICA ***
+
+. tab tue1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+   por tipo de unidad |         Sexo
+    económica-Totales |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+  Empresas y negocios | 1,148,956    802,465 | 1,951,421 
+        Instituciones |   380,913    450,054 |   830,967 
+Sector de los hogares |   882,009    710,642 | 1,592,651 
+Situaciones de caráct |    11,436      7,384 |    18,820 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** CONDICIÓN DE INFORMALIDAD ***
+
+. tab emp_ppal sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+  Clasificación |
+     de empleos |
+     formales e |
+  informales de |
+     la primera |         Sexo
+      actividad |    Hombre      Mujer |     Total
+----------------+----------------------+----------
+      No aplica | 1,194,590  2,203,543 | 3,398,133 
+Empleo informal | 1,214,293    953,744 | 2,168,037 
+  Empleo formal | 1,209,021  1,016,801 | 2,225,822 
+----------------+----------------------+----------
+          Total | 3,617,904  4,174,088 | 7,791,992 
+
+. tab tue_ppal sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+       Tipo de unidad |
+        económica del |         Sexo
+    trabajo principal |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 1,194,590  2,203,543 | 3,398,133 
+      Sector informal |   847,689    541,851 | 1,389,540 
+Fuera del sector info | 1,575,625  1,428,694 | 3,004,319 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. *** TRABAJODRES SUBORDINADOS POR SECTOR ***
+
+. tab rama_est1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & pos_ocu==1
+(frequency weights assumed)
+
+  Clasificación |
+          de la |
+      población |
+  ocupada según |
+      sector de |
+actividad-Total |         Sexo
+             es |    Hombre      Mujer |     Total
+----------------+----------------------+----------
+       Primario |     7,357      1,892 |     9,249 
+     Secundario |   338,138    173,248 |   511,386 
+      Terciario | 1,315,941  1,275,275 | 2,591,216 
+No especificado |    15,577     11,654 |    27,231 
+----------------+----------------------+----------
+          Total | 1,677,013  1,462,069 | 3,139,082 
+
+. tab rama_est2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & pos_ocu==1
+(frequency weights assumed)
+
+  Clasificación de la |
+      población según |
+            sector de |         Sexo
+ actividad-Subtotales |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica |    15,577     11,654 |    27,231 
+Agricultura, ganaderí |     7,357      1,892 |     9,249 
+Industria extractiva  |     7,079      7,625 |    14,704 
+Industria manufacture |   207,995    143,311 |   351,306 
+         Construcción |   123,064     22,312 |   145,376 
+             Comercio |   307,126    207,370 |   514,496 
+Restaurantes y servic |    91,896    109,117 |   201,013 
+Transportes, comunica |   171,410     44,516 |   215,926 
+Servicios profesional |   285,683    261,607 |   547,290 
+   Servicios sociales |   160,338    280,084 |   440,422 
+   Servicios diversos |   124,979    212,674 |   337,653 
+Gobierno y organismos |   174,509    159,907 |   334,416 
+----------------------+----------------------+----------
+                Total | 1,677,013  1,462,069 | 3,139,082 
+
+. *** TRABAJODRES SUBORDINADOS POR TIPO DE CONTRATO ***
+
+. tab tip_con sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & pos_ocu==1
+(frequency weights assumed)
+
+  Clasificación de la |
+            población |
+        subordinada y |
+       remunerada por |         Sexo
+disponibilidad de con |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+             Temporal |   219,793    209,995 |   429,788 
+De base, planta o por |   834,831    753,551 | 1,588,382 
+Contrato de tipo no e |    14,891      6,059 |    20,950 
+ Sin contrato escrito |   586,507    482,392 | 1,068,899 
+      No especificado |    20,991     10,072 |    31,063 
+----------------------+----------------------+----------
+                Total | 1,677,013  1,462,069 | 3,139,082 
+
+. *** TRABAJODRES SUBORDINADOS NO AGROPECUARIOS POR TAMAÑO DE UNIDAD ECONÓMICA ***
+
+. tab ambito2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & pos_ocu==1 & ambito1==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+    por  tamaño de la |
+               unidad |         Sexo
+    económica-Subtota |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+  Sin establecimiento |   169,711     49,550 |   219,261 
+  Con establecimiento |   275,740    190,689 |   466,429 
+Pequeños establecimie |   427,547    421,067 |   848,614 
+Medianos establecimie |   265,103    224,971 |   490,074 
+Grandes establecimien |   221,934    168,364 |   390,298 
+             Gobierno |   174,509    159,907 |   334,416 
+                Otros |    41,421    170,925 |   212,346 
+----------------------+----------------------+----------
+                Total | 1,575,965  1,385,473 | 2,961,438 
+
+. *** POBLACIÓN SUBOCUPADA POR ***
+
+. tab ambito2 sex [w=fac_tri] if ent==9 & pos_ocu==1 & ambito1==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+    por  tamaño de la |
+               unidad |         Sexo
+    económica-Subtota |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+  Sin establecimiento |   170,699     49,550 |   220,249 
+  Con establecimiento |   279,692    191,426 |   471,118 
+Pequeños establecimie |   427,547    421,067 |   848,614 
+Medianos establecimie |   265,103    224,971 |   490,074 
+Grandes establecimien |   221,934    168,364 |   390,298 
+             Gobierno |   174,509    159,907 |   334,416 
+                Otros |    41,421    170,925 |   212,346 
+----------------------+----------------------+----------
+                Total | 1,580,905  1,386,210 | 2,967,115 
+
+. *** POBLACIÓN SUBOCUPADA POR ***
+
+. tab ambito2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1 & ambito1==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+    por  tamaño de la |
+               unidad |         Sexo
+    económica-Subtota |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+  Sin establecimiento |   258,476    161,908 |   420,384 
+  Con establecimiento |   102,355     66,827 |   169,182 
+Pequeños establecimie |    58,498     43,665 |   102,163 
+Medianos establecimie |    17,280     21,289 |    38,569 
+Grandes establecimien |    13,168      8,356 |    21,524 
+             Gobierno |    18,771     18,679 |    37,450 
+                Otros |     4,633     24,855 |    29,488 
+----------------------+----------------------+----------
+                Total |   473,181    345,579 |   818,760 
+
+. tab busqueda sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1 & ambito1==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+     buscador de otro |         Sexo
+              Trabajo |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Si buscó un trabajo a |    39,273     26,194 |    65,467 
+No buscó un trabajo a |   433,908    319,385 |   753,293 
+----------------------+----------------------+----------
+                Total |   473,181    345,579 |   818,760 
+
+. tab busqueda sex [w=fac_tri] if ent==9 & sub_o==1 & ambito1==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+     buscador de otro |         Sexo
+              Trabajo |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Si buscó un trabajo a |    39,273     26,194 |    65,467 
+No buscó un trabajo a |   436,904    319,933 |   756,837 
+----------------------+----------------------+----------
+                Total |   476,177    346,127 |   822,304 
+
+. tab busqueda sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+     buscador de otro |         Sexo
+              Trabajo |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Si buscó un trabajo a |    39,273     27,423 |    66,696 
+No buscó un trabajo a |   447,740    324,240 |   771,980 
+----------------------+----------------------+----------
+                Total |   487,013    351,663 |   838,676 
+
+. *** POBLACIÓN SUBOCUPADA POR BUSQUEDA DE TRABAJO 👆🏻 ***
+
+. *** POBLACIÓN SUBOCUPADA POR NIVEL DE INSTRUCCIÓN 👆🏻 ***
+
+. *** POBLACIÓN SUBOCUPADA POR NIVEL DE INSTRUCCIÓN ***
+
+. tab niv_ins sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+         por nivel de |         Sexo
+          instrucción |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+  Primaria incompleta |    22,907     21,759 |    44,666 
+   Prrimaria completa |    66,942     60,346 |   127,288 
+  Secundaria completa |   174,239    116,246 |   290,485 
+Medio superior y supe |   222,925    153,312 |   376,237 
+----------------------+----------------------+----------
+                Total |   487,013    351,663 |   838,676 
+
+. *** POBLACIÓN SUBOCUPADA POR POSICIÓN EN LA OCUPACIÓN ***
+
+. tab pos_ocu sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+   por posición en la |         Sexo
+            ocupación |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+Trabajadores subordin |   218,328    161,483 |   379,811 
+          Empleadores |    38,515     16,794 |    55,309 
+Trabajadores por cuen |   218,036    163,686 |   381,722 
+Trabajadores sin pago |    12,134      9,700 |    21,834 
+----------------------+----------------------+----------
+                Total |   487,013    351,663 |   838,676 
+
+. *** POBLACIÓN SUBOCUPADA POR SECTOR ***
+
+. tab rama_est1 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1
+(frequency weights assumed)
+
+  Clasificación |
+          de la |
+      población |
+  ocupada según |
+      sector de |
+actividad-Total |         Sexo
+             es |    Hombre      Mujer |     Total
+----------------+----------------------+----------
+       Primario |     4,277          0 |     4,277 
+     Secundario |    98,839     34,231 |   133,070 
+      Terciario |   381,984    317,432 |   699,416 
+No especificado |     1,913          0 |     1,913 
+----------------+----------------------+----------
+          Total |   487,013    351,663 |   838,676 
+
+. tab rama_est2 sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & sub_o==1
+(frequency weights assumed)
+
+  Clasificación de la |
+      población según |
+            sector de |         Sexo
+ actividad-Subtotales |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica |     1,913          0 |     1,913 
+Agricultura, ganaderí |     4,277          0 |     4,277 
+Industria extractiva  |         0      1,675 |     1,675 
+Industria manufacture |    49,449     27,526 |    76,975 
+         Construcción |    49,390      5,030 |    54,420 
+             Comercio |   131,736    120,594 |   252,330 
+Restaurantes y servic |    36,009     41,093 |    77,102 
+Transportes, comunica |    64,297      3,810 |    68,107 
+Servicios profesional |    48,170     37,951 |    86,121 
+   Servicios sociales |    23,325     39,687 |    63,012 
+   Servicios diversos |    59,676     55,618 |   115,294 
+Gobierno y organismos |    18,771     18,679 |    37,450 
+----------------------+----------------------+----------
+                Total |   487,013    351,663 |   838,676 
+
+. *** POBLACIÓN DESOCUPADA POR ***
+
+. tab eda5c sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & clase2==2
+(frequency weights assumed)
+
+ Clasificación de la |
+     población de 14 |
+   años y más: Grupo |         Sexo
+       edad 5 claves |    Hombre      Mujer |     Total
+---------------------+----------------------+----------
+        14 a 24 años |    28,271     20,486 |    48,757 
+        25 a 44 años |    89,152     84,950 |   174,102 
+        45 a 64 años |    51,468     47,805 |    99,273 
+       65 años y más |     5,909      2,227 |     8,136 
+---------------------+----------------------+----------
+               Total |   174,800    155,468 |   330,268 
+
+. *** POBLACIÓN DESOCUPADA POR EDAD 👆🏻 ***
+
+. *** POBLACIÓN DESOCUPADA POR NIVEL DE INSTRUCCIÓN ***
+
+. tab niv_ins sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & clase2==2
+(frequency weights assumed)
+
+  Clasificación de la |
+    población ocupada |
+         por nivel de |         Sexo
+          instrucción |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+  Primaria incompleta |     2,670      2,471 |     5,141 
+   Prrimaria completa |    16,195     14,620 |    30,815 
+  Secundaria completa |    47,971     39,589 |    87,560 
+Medio superior y supe |   107,964     98,788 |   206,752 
+----------------------+----------------------+----------
+                Total |   174,800    155,468 |   330,268 
+
+. *** POBLACIÓN DESOCUPADA POR ANTECEDENTE LABORAL ***
+
+. tab d_cexp_est sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & clase2==2
+(frequency weights assumed)
+
+  Clasificación de la |
+ población desocupada |
+     por condición de |         Sexo
+         desocupación |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica |     8,457      3,499 |    11,956 
+Perdió o termino su e |   113,467     81,548 |   195,015 
+Insatisfacción con el |    29,989     50,169 |    80,158 
+Dejó o cerró un negoc |    16,264     17,586 |    33,850 
+                 Otro |     6,623      2,666 |     9,289 
+----------------------+----------------------+----------
+                Total |   174,800    155,468 |   330,268 
+
+. *** POBLACIÓN DESOCUPADA POR DURACIÓN DEL DESEMPLEO ***
+
+. tab dur_des sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98 & clase2==2
+(frequency weights assumed)
+
+  Clasificación de la |
+         duración del |         Sexo
+            desempleo |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+          Hasta 1 mes |    39,782     41,957 |    81,739 
+Más de 1 mes hasta 3  |    37,642     19,884 |    57,526 
+Más de 3 mes hasta 6  |    30,433     19,146 |    49,579 
+Más de 6 meses hasta  |    17,091     21,762 |    38,853 
+         Más de 1 año |    26,313     16,746 |    43,059 
+      No especificado |    23,539     35,973 |    59,512 
+----------------------+----------------------+----------
+                Total |   174,800    155,468 |   330,268 
+
+. *** PNEA ***
+
+. tab pnea_est sex [w=fac_tri] if ent==9 & eda>=15 & eda<=98
+(frequency weights assumed)
+
+    Composición de la |
+         población no |
+       económicamente |         Sexo
+               activa |    Hombre      Mujer |     Total
+----------------------+----------------------+----------
+            No aplica | 2,598,114  2,126,013 | 4,724,127 
+Disponible para traba |    16,863     13,272 |    30,135 
+Disponibles para trab |   259,810    391,013 |   650,823 
+Con interés para trab |    33,790    182,649 |   216,439 
+Sin interés por traba |   649,864  1,361,926 | 2,011,790 
+Con impedimentos físi |    32,182     42,042 |    74,224 
+                Otros |    27,281     57,173 |    84,454 
+----------------------+----------------------+----------
+                Total | 3,617,904  4,174,088 | 7,791,992 
+
+. ***  ***
+
+. log close
+      name:  <unnamed>
+       log:  /Users/alexisaagh/Library/Mobile Documents/com~apple~CloudDocs/Social Service/Proyects/Bimestre 3/EXTRA - Capacitación/Stata.lo
+> g
+  log type:  text
+ closed on:   8 Feb 2022, 14:48:34
+---------------------------------------------------------------------------------------------------------------------------------------------
